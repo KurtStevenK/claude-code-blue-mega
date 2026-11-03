@@ -13,7 +13,7 @@ Companion to `claude-code-blue`. That skill recolors the Claude Code extension. 
 
 No setting controls the resting color of the dividers, so the script edits VSCodium's own workbench CSS and updates its checksum in `product.json`. Without that update, VSCodium would report the installation as corrupt.
 
-**Twin:** `claude-code-mint-mega` is the same script with the colors swapped (mint at rest, blue while resizing). Each one removes the other's patch, so only one is active at a time.
+**Twin:** `claude-code-mint-mega` is the same script with the colors swapped (mint at rest, blue while resizing). Each `claude-code-*-mega` script (mint, blue, rgb) removes the others' patch, so only one is active at a time.
 
 ## Tested with
 
@@ -27,7 +27,7 @@ No setting controls the resting color of the dividers, so the script edits VSCod
    ```powershell
    powershell -ExecutionPolicy Bypass -File ".\make-blue-mega.ps1"
    ```
-   It can be run any number of times. Each run replaces its own block (and a `claude-code-mint-mega` block), which sits between `/* claude-code-blue-mega:start */` and `/* claude-code-blue-mega:end */`. It:
+   It can be run any number of times. Each run replaces its own block (and any other `claude-code-*-mega` block), which sits between `/* claude-code-blue-mega:start */` and `/* claude-code-blue-mega:end */`. It:
    - appends the divider CSS to `resources\app\out\vs\workbench\workbench.desktop.main.css` and updates that file's checksum in `resources\app\product.json`. On the first run it copies both files to `*.orig`;
    - only with `$chatScrollbar = $true`: appends the scrollbar CSS to `webview\index.css` of every `anthropic.claude-code-*` extension folder;
    - sets `workbench.colorCustomizations` → `sash.hoverBorder` to the resize color (mint) in `%APPDATA%\VSCodium\User\settings.json` (with a backup in `settings.json.bak`).

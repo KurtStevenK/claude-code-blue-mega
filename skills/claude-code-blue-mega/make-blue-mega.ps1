@@ -5,7 +5,7 @@
 # Usage:
 #   powershell -ExecutionPolicy Bypass -File make-blue-mega.ps1          # apply
 #   powershell -ExecutionPolicy Bypass -File make-blue-mega.ps1 -Undo    # remove
-# Replaces a claude-code-mint-mega patch too, so only one of the two is active.
+# Replaces any other claude-code-*-mega patch (mint, blue, rgb), so only one is active.
 
 param([switch]$Undo)
 
@@ -50,9 +50,9 @@ $markEnd
 "@
 
 $utf8 = New-Object System.Text.UTF8Encoding($false)
-# matches the block of this skill and of its twin (claude-code-mint-mega / claude-code-blue-mega)
-$anyStart = '/\* claude-code-(?:mint|blue)-mega:start \*/'
-$pattern = "(?s)\r?\n?" + $anyStart + '.*?/\* claude-code-(?:mint|blue)-mega:end \*/' + "\r?\n?"
+# matches the block of any claude-code-*-mega skill (mint, blue, rgb), so only one is active
+$anyStart = '/\* claude-code-[a-z-]+?-mega:start \*/'
+$pattern = "(?s)\r?\n?" + $anyStart + '.*?/\* claude-code-[a-z-]+?-mega:end \*/' + "\r?\n?"
 
 foreach ($root in $roots) {
     $app = Join-Path $root "resources\app"

@@ -36,7 +36,7 @@ Without the CLI, copy the folder `skills/claude-code-blue-mega` (it holds `SKILL
 Copy-Item .\skills\claude-code-blue-mega "$env:USERPROFILE\.claude\skills\" -Recurse -Force
 ```
 
-The twin with the colors swapped (mint at rest, blue while resizing) is [claude-code-mint-mega](https://github.com/KurtStevenK/claude-code-mint-mega). Each one removes the other's patch, so only one is active at a time.
+The twin with the colors swapped (mint at rest, blue while resizing) is [claude-code-mint-mega](https://github.com/KurtStevenK/claude-code-mint-mega). Each `claude-code-*-mega` script (mint, blue, rgb) removes the others' patch, so only one is active at a time.
 
 ## Run the script yourself
 
@@ -60,7 +60,7 @@ The script is `skills/claude-code-blue-mega/make-blue-mega.ps1`. Run the command
 
 3. Restart VSCodium completely (File → Exit, then start it again). A plain "Reload Window" is not enough.
 
-The script can be run any number of times. Each run replaces its own block between `/* claude-code-blue-mega:start */` and `/* claude-code-blue-mega:end */`, and a `claude-code-mint-mega` block if there is one.
+The script can be run any number of times. Each run replaces its own block between `/* claude-code-blue-mega:start */` and `/* claude-code-blue-mega:end */`, and any other `claude-code-*-mega` block (mint, blue, rgb).
 
 ## What it changes
 
